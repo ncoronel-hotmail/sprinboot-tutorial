@@ -26,6 +26,7 @@ public class MappingController {
 	}
 	
 	
+	
 	//Segunda forma de enviar por get
 	
 	//localhost:8080/index/requestGet2/parameter
