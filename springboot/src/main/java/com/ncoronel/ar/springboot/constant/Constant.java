@@ -10,6 +10,8 @@ public class Constant {
 	public static final String EXAMPLE_VIEW_EXAMPLE_NAME= "exampleName";
 	public static final String EXAMPLE_VIEW_EXAMPLE_COMPLEX= "exampleComplex";
 	public static final String EXAMPLE_VIEW_EXAMPLE_LIST= "exampleList";
+	public static final String MAPPING_VIEW_EXAMPLE_GET_PARAMETER= "exampleGetParameter";
+
 
 
 
