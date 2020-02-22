@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Form</title>
+</head>
+<body>
+	<form action="" th:action="@{/index/addPerson}" th:object="${person}"
+		method="post">
+
+		<p>
+			Name: <input type="text" th:field="*{name}"/>
+		</p>
+		<p>
+			Age: <input type="number"  th:field="*{age}"/>
+		</p>
+		<p> <button name="Enviar"  type="submit">Enviar</button> </p>
+		 
+
+	</form>
+
+</body>
+</html>

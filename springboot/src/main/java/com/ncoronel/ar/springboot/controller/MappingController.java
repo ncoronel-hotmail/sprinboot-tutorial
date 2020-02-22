@@ -1,13 +1,18 @@
 package com.ncoronel.ar.springboot.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ncoronel.ar.springboot.constant.Constant;
+import com.ncoronel.ar.springboot.model.Person;
 
 @Controller
 @RequestMapping("index")
@@ -35,5 +40,20 @@ public class MappingController {
 		ModelAndView mav = new ModelAndView(Constant.MAPPING_VIEW_EXAMPLE_GET_PARAMETER);
 		mav.addObject("nameParameter_in_model",name);
 		return mav;
+	}
+	
+	@GetMapping("/showForm")
+	public String showForm(Model model) {
+		model.addAttribute("person", new Person());
+		return Constant.MAPPING_VIEW_EXAMPLE_FORM;
+	}
+	
+	
+	@PostMapping("addPerson")
+	public ModelAndView addPerson(@ModelAttribute("person") Person persona){//es el nombre del objeto que tiene en la vista
+		ModelAndView mav = new ModelAndView(Constant.MAPPING_VIEW_EXAMPLE_RESULT);
+		mav.addObject("person_model", persona);
+		return mav;
+		
 	}
 }
