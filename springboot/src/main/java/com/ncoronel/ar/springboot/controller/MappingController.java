@@ -2,6 +2,8 @@ package com.ncoronel.ar.springboot.controller;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.ncoronel.ar.springboot.component.ExampleComponent;
 import com.ncoronel.ar.springboot.constant.Constant;
 import com.ncoronel.ar.springboot.model.Person;
 
@@ -21,6 +24,12 @@ import com.ncoronel.ar.springboot.model.Person;
 public class MappingController {
 
 	private static final Log LOGGER =LogFactory.getLog(MappingController.class);
+	
+	
+	
+	@Autowired
+	@Qualifier("exampleComponent")
+	ExampleComponent exampleComponent;
 	
 	
 	//primera forma de enviar por GET
@@ -48,6 +57,7 @@ public class MappingController {
 	
 	@GetMapping("/showForm")
 	public String showForm(Model model) {
+		exampleComponent.saludar();
 		LOGGER.info("Se ingresa al metodo showForm");
 //		LOGGER.info("INFO TRACE");
 //		LOGGER.error("ERROR TRACE");
