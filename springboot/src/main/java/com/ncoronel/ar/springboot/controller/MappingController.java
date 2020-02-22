@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.ncoronel.ar.springboot.constant.Constant;
 import com.ncoronel.ar.springboot.model.Person;
@@ -55,5 +56,17 @@ public class MappingController {
 		mav.addObject("person_model", persona);
 		return mav;
 		
+	}
+	
+	//primera forma para redireccionar
+	@GetMapping("/")// en caso de poner localhost:8080/index/ te redirige a localhost:8080/index/showForm
+	public String redirect() {
+		return "redirect:/index/showForm";
+	}
+	
+	//Segunda forma de redireccionar
+	@GetMapping("")// en caso de solo poner localhost:8080/index te redirige a localhost:8080/index/showForm
+	public RedirectView redirectSecond() {
+		return new RedirectView("/index/showForm");
 	}
 }
