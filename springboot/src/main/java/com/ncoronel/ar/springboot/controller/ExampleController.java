@@ -1,9 +1,9 @@
 package com.ncoronel.ar.springboot.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,10 +12,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ncoronel.ar.springboot.constant.Constant;
 import com.ncoronel.ar.springboot.model.Person;
+import com.ncoronel.ar.springboot.service.PersonService;
 
 @Controller
 @RequestMapping("/example")
 public class ExampleController {
+	
+	@Autowired
+	@Qualifier("personService")
+	private PersonService personService; 
 
 	// Primera forma de retornar un view- de la forma de un String
 
@@ -63,33 +68,18 @@ public class ExampleController {
 	
 	@GetMapping("/stringDatoList")//la peticion se realiza por get, puede ser por POST,DELETE, PUT, PATCH
 	public String exampleStringDatoList(Model model) {
-		model.addAttribute("people",getPeople());//name es el nombre que tiene en la vista
+		model.addAttribute("people",personService.allPerson());//name es el nombre que tiene en la vista
 		return Constant.EXAMPLE_VIEW_EXAMPLE_LIST; 
 	}
 	
 	@GetMapping("/modelandviewDatoList")
 	public ModelAndView exampleMdelAndViewDatoList() {
 		ModelAndView mav =new  ModelAndView(Constant.EXAMPLE_VIEW_EXAMPLE_LIST);
-		mav.addObject("people",getPeople());
+		mav.addObject("people",personService.allPerson());
 		return mav;
 	}
 	
 	
-	private List<Person> getPeople(){
-		List<Person> person = new ArrayList<Person>();
-		person.add(new Person("yesica", 30));
-		person.add(new Person("nicolas", 23));
-		person.add(new Person("valeria", 32));
-		person.add(new Person("alejandro", 14));
-		person.add(new Person("calderon", 36));
-		person.add(new Person("coronel", 34));
-		person.add(new Person("calderon", 36));
 
-		
-		person= person.stream().filter(p->p.getAge() <31).distinct().collect(Collectors.toList());
-		return person;
-
-		
-	}
 
 }
