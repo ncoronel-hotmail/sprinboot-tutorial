@@ -1,6 +1,7 @@
 package com.ncoronel.ar.springboot.controller;
 
-import org.springframework.http.ResponseEntity;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,8 @@ import com.ncoronel.ar.springboot.model.Person;
 @RequestMapping("index")
 public class MappingController {
 
+	private static final Log LOGGER =LogFactory.getLog(MappingController.class);
+	
 	
 	//primera forma de enviar por GET
 	//localhost:8080/index/requestGet1?nameParameter=valueParameter
@@ -45,8 +48,15 @@ public class MappingController {
 	
 	@GetMapping("/showForm")
 	public String showForm(Model model) {
+		LOGGER.info("Se ingresa al metodo showForm");
+//		LOGGER.info("INFO TRACE");
+//		LOGGER.error("ERROR TRACE");
+//		LOGGER.warn("WARNING TRACE");
+//		LOGGER.debug("DEBUG TRACE");
 		model.addAttribute("person", new Person());
 		//int sum= 1/0;//para provocar un error 500;
+		LOGGER.info("vista mostrar " + Constant.MAPPING_VIEW_EXAMPLE_FORM);
+
 		return Constant.MAPPING_VIEW_EXAMPLE_FORM;
 	}
 	
