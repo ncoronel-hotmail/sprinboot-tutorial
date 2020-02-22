@@ -46,6 +46,7 @@ public class MappingController {
 	@GetMapping("/showForm")
 	public String showForm(Model model) {
 		model.addAttribute("person", new Person());
+		//int sum= 1/0;//para provocar un error 500;
 		return Constant.MAPPING_VIEW_EXAMPLE_FORM;
 	}
 	

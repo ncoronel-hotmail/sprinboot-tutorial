@@ -4,6 +4,11 @@ spring:
   thymeleaf:    prefix: classpath:/view/ #se renombra de templates a view
     enable-spring-el-compiler: true
     cache: false
+    
+server:  error:    whitelabel:      enabled: false
+
+
+
 
     
 
