@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="ISO-8859-1"/>
 <title>Form</title>
 </head>
 <body>
@@ -11,9 +11,13 @@
 		<p>
 			Name: <input type="text" th:field="*{name}"/>
 		</p>
+		<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error name</p>
+		
 		<p>
 			Age: <input type="number"  th:field="*{age}"/>
 		</p>
+		<p th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Error age</p>
+		
 		<p> <button name="Enviar"  type="submit">Enviar</button> </p>
 		 
 

@@ -1,11 +1,14 @@
 package com.ncoronel.ar.springboot.controller;
 
+import javax.validation.Valid;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -72,9 +75,18 @@ public class MappingController {
 	
 	
 	@PostMapping("addPerson")
-	public ModelAndView addPerson(@ModelAttribute("person") Person persona){//es el nombre del objeto que tiene en la vista
-		ModelAndView mav = new ModelAndView(Constant.MAPPING_VIEW_EXAMPLE_RESULT);
-		mav.addObject("person_model", persona);
+	public ModelAndView addPerson(@Valid @ModelAttribute("person") Person persona , BindingResult bindingResult){//es el nombre del objeto que tiene en la vista
+		ModelAndView mav = new ModelAndView();
+		
+		if(bindingResult.hasErrors()) {
+			mav.setViewName(Constant.MAPPING_VIEW_EXAMPLE_FORM);
+		}else {
+			mav.setViewName(Constant.MAPPING_VIEW_EXAMPLE_RESULT);
+
+			 mav.addObject("person_model", persona);
+		}
+		
+		
 		return mav;
 		
 	}
