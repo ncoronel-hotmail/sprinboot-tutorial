@@ -14,6 +14,11 @@ public class Constant {
 	public static final String MAPPING_VIEW_EXAMPLE_FORM= "exampleForm";
 	public static final String MAPPING_VIEW_EXAMPLE_RESULT= "exampleResult";
 	public static final String ERROR_VIEW_500= "error/500";
+	
+	
+	//Course
+	public static final String COURSE_VIEW_COURSE= "course/course";
+
 
 
 

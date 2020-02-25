@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1" />
+<title>Couse</title>
+</head>
+<body>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Price</th>
+				<th>Hours</th>
+
+
+			</tr>
+		</thead>
+		<tbody th:each="course : ${listCourse}">
+			<tr>
+				<th th:text="${course.name}"></th>
+				<th th:text="${course.description}"></th>
+				<th th:text="${course.price}"></th>
+				<th th:text="${course.hours}"></th>
+			</tr>
+
+		</tbody>
+	</table>
+<p>
+<form action="" th:action="@{/course/createCourse}" th:object="${course}"
+		method="post">
+
+		<p>
+			Name: <input type="text" th:field="*{name}"/>
+		</p>
+<!-- 		<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error name</p> -->
+		
+		<p>
+			Description: <input type="text" th:field="*{description}"/>
+		</p>
+<!-- 		<p th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Error description</p> -->
+		
+		
+		
+		<p>
+			Price: <input type="number"  th:field="*{price}"/>
+		</p>
+<!-- 		<p th:if="${#fields.hasErrors('price')}" th:errors="*{age}">Error price</p> -->
+		
+				<p>
+			Hours: <input type="number"  th:field="*{hours}"/>
+		</p>
+<!-- 		<p th:if="${#fields.hasErrors('hours')}" th:errors="*{hours}">Error hours</p> -->
+		
+		 		<p> <button name="Enviar"  type="submit">Create</button> </p>
+		 
+
+	</form>
+
+</p>
+</body>
+</html>
