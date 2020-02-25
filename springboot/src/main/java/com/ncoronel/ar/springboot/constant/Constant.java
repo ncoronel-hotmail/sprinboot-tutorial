@@ -18,6 +18,7 @@ public class Constant {
 	
 	//Course
 	public static final String COURSE_VIEW_COURSE= "course/course";
+	
 
 
 

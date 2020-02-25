@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.ncoronel.ar.springboot.dto.CourseDto;
 import com.ncoronel.ar.springboot.entity.Course;
 import com.ncoronel.ar.springboot.repository.CourseJpaRepository;
 import com.ncoronel.ar.springboot.service.CourseService;
@@ -20,31 +21,36 @@ public class CourseServiceImpl implements CourseService{
 	@Qualifier("courseJpaRepository")
 	private CourseJpaRepository courseJpaRepository;
 	
+	
+	@Autowired
+	@Qualifier("courseDto")
+	private CourseDto courseDto;
+	
 	@Override
-	public List<Course> getAll() {
-		return  courseJpaRepository.findAll();
+	public List<CourseDto> getAll() {
+		return   courseDto.convertListCourseToCourseDto(courseJpaRepository.findAll());
 	}
 
 	@Override
-	public Course saveCourse(Course course) {
+	public CourseDto saveCourse(CourseDto course) {
 		Course courseSave =new Course();
-		courseSave = courseJpaRepository.save(course);
-		return courseSave;
+		courseSave = courseJpaRepository.save(courseDto.convertCourseDtoToCourse(course));
+		return  courseDto.convertCourseToCourseDto(courseSave);
 	}
 
 	@Override
-	public Course getCourse(String name) {
+	public CourseDto getCourse(String name) {
 		Course course =new Course();
 		course=courseJpaRepository.findByName(name);
-		return course;
+		return   courseDto.convertCourseToCourseDto(course);
 		
 	}
 
 	@Override
-	public Course updateCourse(Course course) {
+	public CourseDto updateCourse(CourseDto course) {
 		Course courseUpdate = new Course();
-		courseUpdate=courseJpaRepository.save(course);
-		return courseUpdate;
+		courseUpdate=courseJpaRepository.save(courseDto.convertCourseDtoToCourse(course));
+		return courseDto.convertCourseToCourseDto(courseUpdate) ;
 	}
 
 	@Override

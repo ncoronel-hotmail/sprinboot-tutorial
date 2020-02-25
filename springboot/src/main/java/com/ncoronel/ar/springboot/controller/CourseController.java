@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.ncoronel.ar.springboot.constant.Constant;
-import com.ncoronel.ar.springboot.entity.Course;
+import com.ncoronel.ar.springboot.dto.CourseDto;
 import com.ncoronel.ar.springboot.service.CourseService;
 
 /**
@@ -49,7 +49,7 @@ public class CourseController {
 		LOGGER.info("Ingreso al metodo list");
 		ModelAndView mav =new ModelAndView(Constant.COURSE_VIEW_COURSE);
 		mav.addObject("listCourse", courseService.getAll());
-		mav.addObject("course", new Course());
+		mav.addObject("course", new CourseDto());
 
 		return mav;
 	
@@ -60,7 +60,7 @@ public class CourseController {
 	
 	@PostMapping("createCourse")// en modelAtributte el nombre "course" es el nombre de la variable
 	// que recibe de la vista del formulario
-	public RedirectView createCourse( @ModelAttribute("course") Course course) {
+	public RedirectView createCourse( @ModelAttribute("course") CourseDto course) {
 		LOGGER.info("Ingreso al metodo createCourse");
 
 		courseService.saveCourse(course);
