@@ -4,13 +4,20 @@ spring:
   thymeleaf:    prefix: classpath:/view/ #se renombra de templates a view
     enable-spring-el-compiler: true
     cache: false
+  datasource:
+    url: jdbc:mysql://localhost:3306/mydb?useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+    password: root
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    database-platform: org.hibernate.dialect.MySQL5Dialect  
     
 server:  error:    whitelabel:      enabled: false
 
-
-
-
-    
 
     
 
